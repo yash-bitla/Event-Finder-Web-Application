@@ -1,0 +1,76 @@
+<div class="eventsWrapper">
+  <ng-container *ngIf="events.length > 0 && displayTable">
+    <div class="card bg-dark rounded-4">
+      <table
+        mat-table
+        [dataSource]="events"
+        class="table table-striped table-dark rounded rounded-4 overflow-hidden mb-0"
+      >
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef class="table-dark text-center p-lg-1 font-weight-bold">
+            <p class="bold">Date/Time</p>
+          </th>
+          <td mat-cell *matCellDef="let event" class="text-center p-lg-2 font-weight-bold">
+            <p class="bold">{{ event.date }}<br />{{ event.time }}</p>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="icon">
+          <th mat-header-cell *matHeaderCellDef class="table-dark text-center p-lg-1 font-weight-bold">
+            <p class="bold">Icon</p>
+          </th>
+          <td mat-cell *matCellDef="let event" class="text-center p-lg-2">
+            <img src="{{ event.icon }}" class="eventIcon" />
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="event_name">
+          <th mat-header-cell *matHeaderCellDef class="table-dark text-center p-lg-1 font-weight-bold">
+            <p class="bold">Event</p>
+          </th>
+          <td mat-cell *matCellDef="let event" class="text-center p-lg-2">
+            {{ event.event_name }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="genre">
+          <th mat-header-cell *matHeaderCellDef class="table-dark text-center p-lg-1 font-weight-bold">
+            <p class="bold">Genre</p>
+          </th>
+          <td mat-cell *matCellDef="let event" class="text-center p-lg-2">
+            {{ event.genre }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="venue">
+          <th mat-header-cell *matHeaderCellDef class="table-dark text-center p-lg-1 font-weight-bold">
+            <p class="bold">Venue</p>
+          </th>
+          <td mat-cell *matCellDef="let event" class="text-center p-lg-2">
+            {{ event.venue }}
+          </td>
+        </ng-container>
+
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumns"
+          class="table-dark text-center font-weight-bold"
+        ></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: displayedColumns"
+          class="table-dark text-center"
+          (click)="onClickEvent(row)"
+        ></tr>
+      </table>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="eventSelected">
+      <div class="widthContainer">
+        <app-events-details
+          [eventId]="selectedEventId"
+          (onClickBack)="onClickBack()"
+          (onDataFetched)="dataFetched()"
+        ></app-events-details>
+    </div>
+  </ng-container>
+</div>

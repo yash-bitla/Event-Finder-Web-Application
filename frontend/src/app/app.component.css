@@ -1,0 +1,16 @@
+.mainContainer {
+    display: table;
+    justify-content: center;
+    margin: 30px auto 15px auto;
+  }
+
+  @media screen and (min-width: 900px){
+    .mainContainer{
+      width: 100%;
+      margin: 30px auto 15px auto;
+      justify-content: center;
+      display: table;
+    }
+    
+  }
+

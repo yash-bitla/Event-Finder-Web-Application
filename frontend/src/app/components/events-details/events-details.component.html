@@ -1,0 +1,469 @@
+<div class="row eventsDetailsCard">
+  <div class="col-sm-12 col-lg-12 card underlay text-center details-card">
+    <div class="back-button" (click)="handleBackClick()">
+      <i class="leftArrow"></i>
+      <u class="back-button" (click)="handleBackClick()">Back</u>
+    </div>
+    <div
+      style="
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+      "
+      class="min-width-class-sm"
+    >
+      <h5 class="card-title custom-title">{{ eventDetails.name }}</h5>
+      <div class="heartButton">
+        <div *ngIf="isFavorite" (click)="removeItemFromFavorites()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="12"
+            height="12"
+            fill="Red"
+            class="bi bi-heart-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+            />
+          </svg>
+        </div>
+        <div *ngIf="!isFavorite" (click)="addItemToFavorites()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="12"
+            height="12"
+            stroke="black"
+            class="bi bi-heart"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="card-header custom-header">
+      <ul class="nav nav-tabs card-header-tabs details-nav" id="tabs">
+        <li class="nav-item custom-tab">
+          <a
+            href="#event"
+            class="nav-link custom-tab active"
+            data-bs-toggle="tab"
+            >Events</a
+          >
+        </li>
+        <li class="nav-item custom-tab">
+          <a href="#artist" class="nav-link custom-tab" data-bs-toggle="tab"
+            >Artist/Teams</a
+          >
+        </li>
+        <li class="nav-item custom-tab">
+          <a href="#venue" class="nav-link custom-tab" data-bs-toggle="tab"
+            >Venue</a
+          >
+        </li>
+      </ul>
+    </div>
+    <div class="card-body">
+      <div class="tab-content">
+        <div class="tab-pane show active" id="event">
+          <div class="row transparentBg">
+            <div class="col-sm-4 col-lg-6">
+              <ng-container *ngIf="eventDetails.date">
+                <p class="detailHeading">Date</p>
+                <p class="detailValue">{{ eventDetails.date }}</p>
+              </ng-container>
+              <ng-container *ngIf="eventDetails.artist_concat">
+                <div class="mt-3 mt-sm-0">
+                  <p class="detailHeading">Artist/Team</p>
+                  <p class="detailValue">{{ eventDetails.artist_concat }}</p>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="eventDetails.venue">
+                <div class="mt-3 mt-sm-0">
+                  <p class="detailHeading">Venue</p>
+                  <p class="detailValue">{{ eventDetails.venue }}</p>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="eventDetails.genre">
+                <div class="mt-2 mt-sm-0">
+                  <p class="detailHeading">Genres</p>
+                  <p class="detailValue">{{ eventDetails.genre }}</p>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="eventDetails.price_range">
+                <div class="mt-3 mt-sm-0">
+                  <p class="detailHeading">Price Ranges</p>
+                  <p class="detailValue">{{ eventDetails.price_range }}</p>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="eventDetails.ticket_status">
+                <div class="mt-3 mt-sm-0">
+                  <p class="detailHeading">Ticket Status</p>
+                  <div class="status-container">
+                    <div
+                      class="ticket-status-pill"
+                      [ngStyle]="{
+                        'background-color': ticketStatusColour.get(
+                          eventDetails.ticket_status
+                        )
+                      }"
+                    >
+                      <p class="detailValue mb-0">
+                        {{ getPillTitle() }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="eventDetails.buy_at">
+                <div class="mt-3 mt-sm-0">
+                  <p class="detailHeading">Buy Ticket At:</p>
+                  <a
+                    class="detailValue"
+                    href="{{ eventDetails.buy_at }}"
+                    target="_blank"
+                    >Ticketmaster</a
+                  >
+                </div>
+              </ng-container>
+            </div>
+            <ng-container *ngIf="eventDetails.seat_map">
+              <div class="col-sm-8 col-lg-6 mr-auto mt-3 my-sm-auto">
+                <img
+                  class="imageContainer"
+                  src="{{ eventDetails.seat_map }}"
+                  alt="sans"
+                />
+              </div>
+            </ng-container>
+            <ng-container *ngIf="!eventDetails.seat_map">
+              <div class="col-sm-8 col-lg-7"></div>
+            </ng-container>
+          </div>
+          <div class="px-auto align-items-center detailValue mt-3 mt-sm-0">
+            Share on:
+            <a
+              href="https://twitter.com/intent/tweet?text=Check {{
+                eventDetails.name
+              }} on Ticketmaster. {{ eventDetails.buy_at }}"
+              target="_blank"
+              class="mr-1"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="23"
+                height="23"
+                fill="#1DA1F2"
+                class="bi bi-twitter"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"
+                />
+              </svg> </a
+            >&nbsp;
+            <a
+              target="_blank"
+              href="https://www.facebook.com/sharer/sharer.php?u={{
+                eventDetails.buy_at
+              }}&amp;src=sdkpreparse"
+            >
+              <svg
+                fill="#0e46ef"
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                width="22"
+                height="22"
+                viewBox="0 0 95.333 95.333"
+                xml:space="preserve"
+              >
+                <g>
+                  <path
+                    d="M93.333,0H2C0.896,0,0,0.896,0,2v91.332c0,1.104,0.896,2,2,2h48.525V63.477H40.284c-0.885,0-1.602-0.717-1.602-1.602
+                      V48.961c0-0.885,0.717-1.603,1.602-1.603h10.242v-8.913c0-11.744,7.395-19.332,18.839-19.332l10.188,0.016
+                      c0.883,0.001,1.6,0.718,1.6,1.602v11.991c0,0.885-0.717,1.602-1.602,1.602l-6.863,0.003c-4.729,0-5.595,1.844-5.595,5.475v7.556
+                      h11.979c0.425,0,0.832,0.169,1.133,0.47c0.3,0.301,0.469,0.708,0.469,1.133L80.67,61.876c0,0.885-0.717,1.603-1.602,1.603H67.092
+                      v31.854h26.24c1.104,0,2-0.896,2-2V2C95.333,0.895,94.438,0,93.333,0z"
+                  />
+                </g>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="tab-pane" id="artist">
+          <ng-container *ngIf="artistsDetails">
+            <div
+              id="myCarousel"
+              class="carousel slide"
+              data-interval="false"
+              data-bs-ride="carousel"
+            >
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner">
+                <div *ngFor="let artistDetail of artistsDetails; let i = index" class="carousel-item" [class.active]="i == 0">
+                  <div>
+                    <div class="artistDetailsContainer">
+                      <div class="row">
+                        <div class="col-sm-3 centerVertical">
+                          <img
+                            src="{{ artistDetail.profile_image.url }}"
+                            class="col-sm-12 rounded-circle col-9 mb-2"
+                          />
+                          <h3 class="detailHeading">{{ artistDetail.name }}</h3>
+                        </div>
+                        <div
+                          class="col-sm-3 centerVertical pb-sm-2 mt-3 mt-sm-0"
+                        >
+                          <h4 class="detailHeading">Popularity</h4>
+                          <div style="width: 35px; height: 35px; margin: auto">
+                            <mat-spinner
+                              [value]="artistDetail.popularity"
+                              color="#FF0000"
+                              mode="determinate"
+                              diameter="35"
+                            ></mat-spinner>
+                            <div
+                              style="
+                                position: relative;
+                                top: -27px;
+                                font-size: 12px;
+                              "
+                            >
+                              {{ artistDetail.popularity }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-3 centerVertical mt-3 mt-sm-0">
+                          <h4 class="detailHeading">Followers</h4>
+                          <p>{{ artistDetail.followers }}</p>
+                        </div>
+                        <div
+                          class="col-sm-3 centerVertical pb-sm-3 mt-3 mt-sm-0"
+                        >
+                          <h4 class="detailHeading">Spotify link</h4>
+                          <a
+                            href="{{ artistDetail.spotifyLink }}"
+                            target="_blank"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="21"
+                              height="21"
+                              fill="green"
+                              class="bi bi-spotify"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.669 11.538a.498.498 0 0 1-.686.165c-1.879-1.147-4.243-1.407-7.028-.77a.499.499 0 0 1-.222-.973c3.048-.696 5.662-.397 7.77.892a.5.5 0 0 1 .166.686zm.979-2.178a.624.624 0 0 1-.858.205c-2.15-1.321-5.428-1.704-7.972-.932a.625.625 0 0 1-.362-1.194c2.905-.881 6.517-.454 8.986 1.063a.624.624 0 0 1 .206.858zm.084-2.268C10.154 5.56 5.9 5.419 3.438 6.166a.748.748 0 1 1-.434-1.432c2.825-.857 7.523-.692 10.492 1.07a.747.747 0 1 1-.764 1.288z"
+                              />
+                            </svg>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="flex-column d-flex mx-auto mx-sm-0">
+                        <div class="d-flex flex-row mt-3">
+                          <h5
+                            class="detailHeading float-sm-start mx-auto mx-sm-0"
+                          >
+                            Album featuring {{ artistDetail.name }}
+                          </h5>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-4">
+                            <img
+                              src="{{ artistDetail.album_images[0].url }}"
+                              class="col-sm-12 col-9 mb-2 mt-lg-3"
+                            />
+                          </div>
+                          <div class="col-sm-4">
+                            <img
+                              src="{{ artistDetail.album_images[1].url }}"
+                              class="col-sm-12 col-9 mb-2 mt-lg-3"
+                            />
+                          </div>
+                          <div class="col-sm-4">
+                            <img
+                              src="{{ artistDetail.album_images[2].url }}"
+                              class="col-sm-12 col-9 mb-2 mt-lg-3"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Left and right controls -->
+              <a
+                class="carousel-control-prev"
+                href="#myCarousel"
+                role="button"
+                data-slide="prev"
+              >
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="sr-only"></span>
+              </a>
+
+              <a
+                class="carousel-control-next"
+                href="#myCarousel"
+                role="button"
+                data-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="sr-only"></span>
+              </a>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="artistsDetails.length === 0">
+            <div class="row">
+              <div class="col-sm-12 col-12">
+                <p class="noArtists rounded-4">
+                  no music related artist details to show
+                </p>
+              </div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="!artistsDetails">
+            <div>Not loaded yet</div>
+          </ng-container>
+        </div>
+        <div class="tab-pane" id="venue">
+          <div class="row">
+            <div class="col-sm-6 col-md-6 col-mg-6">
+              <ng-container *ngIf="venueDetails.name">
+                <p class="detailHeading">Name</p>
+                <p class="detailValue">{{ venueDetails.name }}</p>
+              </ng-container>
+              <ng-container *ngIf="venueDetails.address">
+                <p class="detailHeading">Address</p>
+                <p class="detailValue">
+                  {{ venueDetails.address }}, {{ venueDetails.city }}
+                </p>
+              </ng-container>
+              <ng-container *ngIf="venueDetails.phone">
+                <p class="detailHeading">Phone Number</p>
+                <p class="detailValue">{{ venueDetails.phone }}</p>
+              </ng-container>
+            </div>
+            <div class="col-sm-6 col-md-6 col-mg-6">
+              <ng-container *ngIf="venueDetails.openHours">
+                <p class="detailHeading">Open Hours</p>
+                <span class="detailValue" *ngIf="!showingMore.openHours">
+                  {{ trimString(venueDetails.openHours, 100) }}</span
+                >
+                <span class="detailValue" *ngIf="showingMore.openHours">
+                  {{ venueDetails.openHours }}
+                </span>
+                <div
+                  *ngIf="venueDetails.openHours.length > 100"
+                  (click)="onClickShow('openHours')"
+                >
+                  <div *ngIf="showingMore.openHours">
+                    <u class="showMore">Show Less</u>
+                    <div class="upArrow"></div>
+                  </div>
+                  <div *ngIf="showingMore.openHours === false">
+                    <u class="showMore">Show More</u>
+                    <div class="downArrow"></div>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="venueDetails.generalRule">
+                <p class="detailHeading">General Rule</p>
+                <span class="detailValue" *ngIf="!showingMore.generalRule">
+                  {{ trimString(venueDetails.generalRule, 100) }}</span
+                >
+                <span class="detailValue" *ngIf="showingMore.generalRule">
+                  {{ venueDetails.generalRule }}
+                </span>
+                <div
+                  *ngIf="venueDetails.generalRule.length > 100"
+                  (click)="onClickShow('generalRule')"
+                >
+                  <div *ngIf="showingMore.generalRule">
+                    <u class="showMore">Show Less</u>
+                    <div class="upArrow"></div>
+                  </div>
+                  <div *ngIf="showingMore.generalRule === false">
+                    <u class="showMore">Show More</u>
+                    <div class="downArrow"></div>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="venueDetails.childRule">
+                <p class="detailHeading">Child Rule</p>
+                <span class="detailValue" *ngIf="!showingMore.childRule">
+                  {{ trimString(venueDetails.childRule, 100) }}</span
+                >
+                <span class="detailValue" *ngIf="showingMore.childRule">
+                  {{ venueDetails.childRule }}
+                </span>
+                <div
+                  *ngIf="venueDetails.childRule.length > 100"
+                  (click)="onClickShow('childRule')"
+                >
+                  <div *ngIf="showingMore.childRule">
+                    <u class="showMore">Show Less</u>
+                    <div class="upArrow"></div>
+                  </div>
+                  <div *ngIf="showingMore.childRule === false">
+                    <u class="showMore">Show More</u>
+                    <div class="downArrow"></div>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+          <button
+            type="button"
+            class="btn btn-danger btn-sm showMapBtn mx-auto text-nowrap"
+            (click)="showMap(template)"
+          >
+            Show Venue on Google Maps
+          </button>
+
+          <ng-template #template>
+            <div class="modal-header">
+              <h4 class="modal-title pull-left">Event Venue</h4>
+            </div>
+            <div class="modal-body">
+              <div class="my-google-map">
+                <google-map [center]="coordinates">
+                  <map-marker
+                    [position]="coordinates"
+                    [label]="venueDetails.name"
+                    [title]="venueDetails.name"
+                  ></map-marker>
+                </google-map>
+              </div>
+            </div>
+            <div class="modal-footer justify-content-start">
+              <button
+                class="btn btn-dark btn-sm"
+                aria-label="Close"
+                (click)="modalRef.hide()"
+              >
+                Close
+              </button>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

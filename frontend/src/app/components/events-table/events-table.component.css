@@ -1,0 +1,45 @@
+@media screen and (min-width: 900px) {
+  .widthContainer {
+    display: inline-block;
+    width: 70%;
+  }
+}
+
+@media screen and (min-width: 541px) {
+  .widthContainer {
+    display: inline-block;
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .widthContainer {
+    display: inline-block;
+    overflow-x: auto !important;
+  }
+}
+
+.eventsWrapper {
+  margin-top: 100px;
+  text-align: center;
+  padding-left: auto;
+  padding-right: auto;
+}
+
+tr {
+  border-top: hidden;
+}
+
+td {
+  color: white;
+}
+
+.eventIcon {
+  height: 45px;
+  width: 75px;
+}
+
+.bold {
+  font-weight: 600;
+  margin-bottom: 0px;
+}

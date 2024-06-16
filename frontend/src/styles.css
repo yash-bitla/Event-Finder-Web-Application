@@ -1,0 +1,72 @@
+/* You can add global styles to this file, and also import other style files */
+/* @import "../node_modules/bootstrap/dist/css/bootstrap.min.css"; */
+@import "~@angular/cdk/overlay-prebuilt.css";
+/* @import "~bootstrap/dist/css/bootstrap.css"; */
+
+body {
+    background-image: url("background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+  }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.whiteBg {
+  background-color: white !important;
+}
+
+.mat-mdc-table tbody, .mat-mdc-table tfoot, .mat-mdc-table thead, .mat-mdc-cell, .mat-mdc-footer-cell, .mat-mdc-header-row, .mat-mdc-row, .mat-mdc-footer-row, .mat-mdc-table .mat-mdc-header-cell {
+  color: white;
+  background-color: #212529 !important;
+}
+
+.mat-mdc-table .favorites tbody, 
+.mat-mdc-table .favorites tfoot, 
+.mat-mdc-table .favorites thead, 
+.mat-mdc-cell .favorites, 
+.mat-mdc-footer-cell .favorites, 
+.mat-mdc-header-row .favorites, 
+.mat-mdc-row .favorites, 
+.mat-mdc-footer-row .favorites, 
+.mat-mdc-table .mat-mdc-header-cell .favorites {
+  color: black;
+  background-color: white !important;
+}
+
+.mat-mdc-progress-spinner {
+  --mdc-circular-progress-active-indicator-color: #ef1515;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mat-mdc-progress-spinner.grey{
+  --mdc-circular-progress-active-indicator-color: #444444 !important;
+}
+
+
+@media screen and (min-width:700px){
+  .carousel-control-prev, .carousel-control-next {
+    width: 5%;
+  }
+}
+
+.hide {
+  display: none;
+}
+
+@media screen and (max-width:400px) {
+  .my-google-map .map-container {
+    width: 340px;
+    height: 400px;
+  }
+  
+}
+
+.my-google-map .map-container {
+  width: 460px;
+  height: 400px;
+}
+

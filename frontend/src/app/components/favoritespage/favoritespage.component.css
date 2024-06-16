@@ -1,0 +1,44 @@
+@media screen and (min-width: 900px) {
+  .centerContainer {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .centerContainer {
+    width: 100%;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  .noFavorites {
+    width: fit-content !important;
+    padding-left: 5px;
+    padding-right: 5px;
+    white-space: nowrap;
+  }
+}
+
+.centerContainer {
+  margin: 10px auto;
+  justify-content: center;
+}
+
+.noFavorites {
+  margin: auto;
+  background-color: white;
+  padding: 0.1rem auto;
+  width: 70%;
+  color: red;
+  text-align: center;
+}
+
+.title {
+  color: rgb(45, 249, 215);
+  font-size: 1rem;
+  font-weight: 400;
+  padding-bottom: 1rem;
+  margin: auto;
+  justify-content: center;
+  display: flex;
+}
+

@@ -1,0 +1,269 @@
+@media screen and (min-width: 1000px) {
+    .noArtists {
+        margin: 20px 200px 100px 200px;
+        white-space: nowrap;
+    }
+    .marginContainer{
+        margin: auto;
+    }
+    .artistDetailsContainer {
+        padding: 0.5rem 4rem 0.7rem 4rem !important;
+    }
+}
+
+@media screen and (max-width:540px) {
+    .min-width-class-sm {
+        min-width:100vw;
+    } 
+    .custom-tab{
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+        }
+
+    div.back-button {
+        padding: 0.6rem 0 0.2rem 1.3rem !important;
+    }
+}
+
+@media screen and (min-width:541px) {
+    .custom-tab{
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+
+    .eventsDetailsCard {
+        width: 100%;
+        min-width: 100%;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .custom-tab{
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+    
+}
+
+.noArtists {
+    background-color: white;
+    color: red;
+}
+
+.details-card {
+    color: rgb(222, 222, 222);
+    margin-bottom: 2rem;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    border-radius: 0px !important;
+}
+
+u.back-button{
+    font-size: 0.9rem;
+    color: white;
+    font-style: underline;
+}
+
+.leftArrow {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    border: solid rgb(229, 229, 229);
+    border-width: 0 0 0.1rem 0.1rem;
+    display: inline-block;
+    padding: 0.17rem
+  }
+
+.back-button {
+    padding: 0.6rem 0 0.2rem 0.6rem;
+    text-align: left;
+    cursor: pointer;
+}
+
+.back-button u {
+    padding-left: 0.1rem;
+}
+
+.custom-title {
+    margin-top: 1.7rem;
+    margin-bottom: 2rem;
+}
+.custom-tab :hover {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    color: rgb(224, 224, 224) !important;
+}
+
+.custom-tab.active,
+.custom-tab :active {
+    color: rgb(205, 205, 205) !important;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid rgb(104, 29, 134) !important;
+    border-radius: 0px !important;
+    background-color: transparent !important;
+}
+
+.custom-tab {
+    background-color: transparent !important;
+}
+
+.custom-tab a:visited,
+.custom-tab a:link,
+.custom-tab a:hover,
+.custom-tab a:active {
+  text-decoration: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+}
+
+a.custom-tab {
+    color: rgb(224, 224, 224) !important;
+    font-size: 0.9rem;
+}
+
+.details-nav {
+    background-color: rgba(123, 210, 195, 0.826);
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding-left: auto;
+    padding-right: auto;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.custom-header {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+}
+
+.underlay {
+    background-color: rgb(105, 105, 105, 0.2);
+    -webkit-backdrop-filter: contrast(70%) blur(5.5px) grayscale(30%) saturate(100%);
+    backdrop-filter: contrast(70%) blur(5.5px) grayscale(30%);
+  }
+
+.transparentBg {
+    background-color: transparent;
+    border: none;
+}
+
+.detailHeading {
+    font-family: Arial;
+    color: rgb(45, 249, 215);
+    margin: 0px 0px 3px 0px;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.detailValue{
+    font-size: 0.9rem;
+}
+
+.detailValue p{
+    margin-bottom: none;
+}
+
+.ticket-status-pill {
+	width: fit-content;
+	border-radius: 7px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.17rem;
+    margin-bottom: 10px;
+}
+
+.imageContainer{
+    max-width: 300px;
+    max-height:300px;
+    width: auto;
+    height: auto;
+}
+
+.status-container{
+    text-align: center;
+}
+
+.artistDetailsContainer {
+    padding: 1rem 2rem 1rem 2rem;
+}
+
+h3.detailHeading {
+    color: rgb(45, 249, 215) !important;
+    font-size: 1.2rem !important;
+    font-weight: 700 !important;
+}
+
+h4.detailHeading {
+    color: rgb(45, 249, 215) !important;
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 0.7rem;
+}
+
+h5.detailHeading {
+    color: rgb(45, 249, 215) !important;
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    align-self: flex-start !important;
+    padding-bottom: 0.5rem !important;
+}
+
+.centerVertical {
+    align-self: center;
+}
+
+.showMore {
+    color: #3695e2;
+    font-size: 0.7rem;
+}
+
+.downArrow {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    border: solid rgb(229, 229, 229);
+    border-width: 0 0.1rem 0.1rem 0;
+    display: inline-block;
+    padding: 0.17rem;
+    margin-left: 0.3rem;
+    margin-bottom: 0.1rem;
+  }
+
+  .upArrow {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    border: solid rgb(229, 229, 229);
+    border-width: 0.1rem 0 0 0.1rem;
+    display: inline-block;
+    padding: 0.17rem;
+    margin-left: 0.3rem;
+    margin-top: 0.1rem;
+  }
+
+  .heartButton {
+    background-color: white;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    margin-left: 0.7rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .my-google-map {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .color {
+    background-color: #0e46ef;
+  }
+
+
+

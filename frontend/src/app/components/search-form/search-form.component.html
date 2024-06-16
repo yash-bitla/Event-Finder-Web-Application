@@ -1,0 +1,121 @@
+<div class="centerContainer">
+  <div class="searchBox underlay mt-3">
+    <h1 class="searchTitle">Events Search</h1>
+    <form
+      [formGroup]="formSearch"
+      (ngSubmit)="fetchEvents(formSearch)"
+      class="formContainer"
+      ngNativeValidate
+    >
+      <div class="form-group pb-3">
+        <label for="keyword" required="true">Keyword</label>
+        <input
+          matInput
+          [(ngModel)]="selectedKeyword"
+          [matAutocomplete]="auto"
+          [formControl]="keywordCtrl"
+          type="text"
+          class="form-control"
+          id="keyword"
+          required
+          matAutocompletePosition="below"
+          position="below"
+          formControlName="keyword"
+        />
+        <mat-autocomplete
+          #auto="matAutocomplete"
+          (optionSelected)="onSelected()"
+          classList="whiteBg"
+        >
+        <mat-option *ngIf="isLoading" class="is-loading">
+          <mat-spinner diameter="22" class="grey"></mat-spinner>
+        </mat-option>
+          <ng-container *ngIf="!isLoading && suggestions && suggestions.length > 0">
+            <mat-option
+              *ngFor="let suggestion of suggestions"
+              [value]="suggestion"
+            >
+              {{ suggestion }}
+            </mat-option>
+          </ng-container>
+        </mat-autocomplete>
+      </div>
+      <div class="row">
+        <div class="col-12 col-sm-6 pb-3">
+          <div class="form-group">
+            <label for="distance">Distance</label>
+            <input
+              type="number"
+              class="form-control"
+              id="distance"
+              min="1"
+              formControlName="distance"
+              placeholder="10"
+            />
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 pb-3">
+          <div class="form-group col-9">
+            <label for="category" required="true">Category</label>
+            <select
+              class="form-control form-select"
+              id="category"
+              formControlName="category"
+              required
+            >
+              <option value="0">Default</option>
+              <option value="1">Music</option>
+              <option value="2">Sports</option>
+              <option value="3">Arts & Theatre</option>
+              <option value="4">Film</option>
+              <option value="5">Miscellaneous</option>
+            </select>
+          </div>
+          <div class="col-3"></div>
+        </div>
+      </div>
+      <div class="form-group pb-3">
+        <label for="location" required="true">Location</label>
+        <input
+          type="text"
+          class="form-control"
+          id="location"
+          required
+          formControlName="location"
+        />
+      </div>
+      <div class="form-check pb-3">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="autoDetect"
+          formControlName="autoDetect"
+        />
+        <label class="form-check-label" for="autoDetect"
+          >Auto-detect your location</label
+        >
+      </div>
+      <div class="row pb-3">
+        <div class="col-sm-12 text-center">
+          <button type="submit" class="btn btn-danger btn-md center-block">
+            SUBMIT
+          </button>
+          <button
+            type="reset"
+            class="btn btn-primary btn-md center-block"
+            (click)="clearEvents()"
+          >
+            CLEAR
+          </button>
+        </div>
+      </div>
+      <!--https://stackoverflow.com/questions/30967737/align-buttons-side-by-side-bootstrap-->
+    </form>
+  </div>
+  <ng-container *ngIf="events && events.length > 0">
+    <app-events-table [events]="events"></app-events-table>
+  </ng-container>
+  <ng-container *ngIf="events && events.length === 0 && resultsFetched">
+    <div class="noEvents rounded-4">No results available</div>
+  </ng-container>
+</div>

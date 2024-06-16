@@ -1,0 +1,9 @@
+.active {
+    border: solid white 1.5px;
+    border-radius: 10px;
+}
+
+.menu-item {
+    color: white;
+    font-size: 13px;
+}
