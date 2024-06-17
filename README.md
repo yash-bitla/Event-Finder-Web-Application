@@ -1,6 +1,6 @@
 # Event-Finder-Web-Application
 
-In this project, I have created a webpage using Angular and node.js that allows you to search for event information using the Ticketmaster API, and the results will be displayed in a tabular format. The page will also provide event and venue details. Currently hosted the website using Google Cloud Platform (GCP).
+Event Finder Web Application is a webpage created using Angular and node.js that allows you to search for event information using the Ticketmaster API, and the results will be displayed in a tabular format. The page will also provide event and venue details. Currently, the website is hosted using Google Cloud Platform (GCP).
 
 ## Outcome
 - Developed a web page using Flask that interfaces with the Ticketmaster API to retrieve event information based on user search input.
